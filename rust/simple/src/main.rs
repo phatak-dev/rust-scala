@@ -12,10 +12,9 @@ fn main() {
      */
 
     //collection type inferece 
-    let mut vector = Vec::new();
-    vector.push(10);
+    let _vector = vec!(10,20,30,40);
 
-    /* vector.push(10.0);
+    /* _vector.push(10.0);
      * Prints expected integral variable, found floating-point variable
      */
 
