@@ -9,7 +9,7 @@ struct Person<'a> {
   name : &'a str,
   age : i32 
 }
-struct Restaruant<'a> {
+struct Restaurant<'a> {
   name : &'a str,
   brunch : bool
 }
@@ -20,7 +20,7 @@ impl<'a> Serializable<'a> for Person<'a> {
      Cow::Owned(self.name.to_owned()+" "+ &self.age.to_string())
   }
 }
-impl<'a> Serializable<'a> for Restaruant<'a> {
+impl<'a> Serializable<'a> for Restaurant<'a> {
   fn serialize( self: &Self) -> Cow<'a,str> {
      Cow::Owned(self.name.to_owned()+" "+ &self.brunch.to_string())
   }
@@ -39,7 +39,7 @@ pub fn serialize_method<'a,T>(v:&T) -> Cow<'a,str> where T:Serializable<'a> {
 
 fn main() {
    let s = Person { name:"hello", age:32};
-   let r = Restaruant { name:"hello", brunch:true};
+   let r = Restaurant { name:"hello", brunch:true};
    let vector = vec!(Person{name:"hack", age:40});
 
    println!("{}",serialize_method(&s));

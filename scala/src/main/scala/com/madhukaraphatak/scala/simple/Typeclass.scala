@@ -3,7 +3,7 @@ package com.madhukaraphatak.scala.simple
 object Typeclass {
 
   case class Person(name: String, age: Int)
-  case class Restaraunt(name: String, brunch: Boolean)
+  case class Restaurant(name: String, brunch: Boolean)
   case class Recursive(name: String, r: Option[Recursive])
 
   trait Serializable[T] {
@@ -14,9 +14,9 @@ object Typeclass {
 
     def serialize(v: Person): String = "Person(" + v.name + "," + v.age + ")"
   }
-  implicit object Restaraunt extends Serializable[Restaraunt] {
+  implicit object Restaurant extends Serializable[Restaurant] {
 
-    def serialize(v: Restaraunt): String = "Restaraunt(" + v.name + "," + v.brunch + ")"
+    def serialize(v: Restaurant): String = "Restaurant(" + v.name + "," + v.brunch + ")"
   }
 
   implicit def ListSerializable[T: Serializable] = new Serializable[List[T]] {
@@ -45,10 +45,10 @@ object Typeclass {
 
   def main(args: Array[String]) = {
     val person = Person("test something", 10)
-    val restarutant = Restaraunt("test", false)
+    val restaurant = Restaurant("test", false)
     println(serializeMethod(person))
     println(serializeMethod(List(person, person)))
-    println(serializeMethod((person, restarutant)))
+    println(serializeMethod((person, restaurant)))
 
     val recursive = Recursive("test", Some(Recursive("jack", None)))
   }
